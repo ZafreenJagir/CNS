@@ -20,15 +20,65 @@ becomes C. To change a message back, each letter is replaced by the one three be
 
 ## ALGORITHM:
 
-### STEP-1: Read the plain text from the user.
-### STEP-2: Read the key value from the user.
-### STEP-3: If the key is positive then encrypt the text by adding the key with each character in the plain text.
-### STEP-4: Else subtract the key from the plain text.
-### STEP-5: Display the cipher text obtained above.
+Step 1:
+Design of Caesar Cipher algorithnm
+Step 2:
+Implementation using C or pyhton code
+Step 3:
+1.	In Ceasar Cipher each letter in the plaintext is replaced by a letter some fixed number of positions down the alphabet.
+2.	For example, with a left shift of 3, D would be replaced by A, E would become B, and so on.
+3.	The encryption can also be represented using modular arithmetic by first transforming the letters into numbers, according to the
+scheme, A = 0, B = 1, Z = 25.
+4.	Encryption of a letter x by a shift n can be described mathematically as, En(x) = (x + n) mod26
+5.	Decryption is performed similarly, Dn (x)=(x - n) mod26
 
 
-PROGRAM :-
+
+# PROGRAM :-
+
+```
+#include <stdio.h>
+#include <stdlib.h>
+void caesarEncrypt(char *text, int key)
+{
+   for (int i = 0; text[i] != '\0'; i++)
+    {
+        char c = text[i];
+        if (c >= 'A' && c <= 'Z')
+        {
+            text[i] = ((c - 'A' + key) % 26 + 26) % 26 + 'A';
+        }
+        else if (c >= 'a' && c <= 'z')
+        {
+            text[i] = ((c - 'a' + key) % 26 + 26) % 26 + 'a';
+        }
+    }
+}
+void caesarDecrypt(char *text, int key)
+{
+    caesarEncrypt(text, -key);
+}
+
+int main()
+{
+    char message[100];
+    int key;
+    printf("Enter the message to encrypt: ");
+    fgets(message, sizeof(message), stdin);
+    printf("Enter the Caesar Cipher key (an integer): ");
+    scanf("%d", &key);
+    caesarEncrypt(message, key);
+    printf("Encrypted Message: %s", message);
+    caesarDecrypt(message, key);
+    printf("Decrypted Message: %s", message);
+    return 0;
+}
+
+```
+
+# OUTPUT :-
+![image](https://github.com/user-attachments/assets/4ede38c8-e121-45e9-aa1a-5054cdaf4064)
 
 
-
-OUTPUT :-
+# RESULT:
+The program for Caesar Cipher is executed successfully.
